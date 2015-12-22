@@ -1,5 +1,21 @@
-var HelloWorld = React.createClass({
-	displayName: 'HelloWorld',
+var centerBlack = {
+	color: 'black',
+	textAlign: 'center'
+};
+var centerBlue = {
+	color: 'blue',
+	textAlign: 'center'
+};
+var leftGreen = {
+	color: 'green',
+	textAlign: 'left'
+};
+var rightRed = {
+	color: 'red',
+	textAlign: 'right'
+};
+var Introduction = React.createClass({
+	displayName: 'Introduction',
 
 	render: function () {
 		return React.createElement(
@@ -7,19 +23,29 @@ var HelloWorld = React.createClass({
 			null,
 			React.createElement(
 				'h1',
-				null,
-				'Hello World'
+				{ style: centerBlack },
+				'Discover Your Secret Identity'
 			),
 			React.createElement(
-				'p',
-				null,
-				'This is some text'
+				'h2',
+				{ style: leftGreen },
+				'Answer the following questions;'
+			),
+			React.createElement(
+				'h3',
+				{ style: centerBlue },
+				'solve the puzzles...'
+			),
+			React.createElement(
+				'h4',
+				{ style: rightRed },
+				'and discover the truth about yourself'
 			)
 		);
 	}
 });
 function run() {
-	ReactDOM.render(React.createElement(HelloWorld, null), document.getElementById("react-container"));
+	ReactDOM.render(React.createElement(Introduction, null), document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
