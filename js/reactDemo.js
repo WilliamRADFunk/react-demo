@@ -18,4 +18,4 @@ var helloWorld = React.createClass({
 		);
 	}
 });
-ReactDOM.render(React.createElement("helloWorld", null), document.body);
+ReactDOM.render(React.createElement("helloWorld", null), document.getElementById("container"));
