@@ -62,6 +62,7 @@ var Project = React.createClass
 			<div>
 				<Introduction display={this.state.phase1} />
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
+				<BackgroundInfo display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
 });
@@ -97,10 +98,24 @@ var StartButton = React.createClass
 });
 /**********Phase1 Elements end here ***************************************************************/
 /**********Phase2 Elements start here *************************************************************/
-
-
-
-
+var BackgroundInfo = React.createClass
+({
+	handleClick: function(event)
+	{
+		console.log("Submitting..."); //DEBUG
+		this.props.onPhaseChange("phase1");
+		return false;
+	},
+	render: function()
+	{
+		return (this.props.display ? (
+			<form name="background-info">
+				<input name="background-info" type="text" />
+				<input name="background-info" type="checkbox" value="answer2" />
+				<button onClick={this.handleClick}>SUBMIT</button>
+			</form> ) : null );
+	}
+});
 /**********Phase2 Elements end here ***************************************************************/
 /**********Phase3 Elements start here *************************************************************/
 
