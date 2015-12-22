@@ -1,5 +1,5 @@
-var helloWorld = React.createClass({
-	displayName: 'helloWorld',
+var HelloWorld = React.createClass({
+	displayName: 'HelloWorld',
 
 	render: function () {
 		return React.createElement(
@@ -19,7 +19,7 @@ var helloWorld = React.createClass({
 	}
 });
 function run() {
-	ReactDOM.render(React.createElement('helloWorld', null), document.getElementById("react-container"));
+	ReactDOM.render(React.createElement(HelloWorld, null), document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];

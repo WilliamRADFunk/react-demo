@@ -1,4 +1,4 @@
-var helloWorld = React.createClass({
+var HelloWorld = React.createClass({
 	render: function() {
 		return (
 			<div>
@@ -9,7 +9,7 @@ var helloWorld = React.createClass({
 });
 function run()
 {
-	ReactDOM.render(<helloWorld />, document.getElementById("react-container"));
+	ReactDOM.render(<HelloWorld />, document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
