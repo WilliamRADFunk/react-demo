@@ -1,23 +1,31 @@
 var helloWorld = React.createClass({
-	displayName: "helloWorld",
+	displayName: 'helloWorld',
 
 	render: function () {
 		return React.createElement(
-			"div",
+			'div',
 			null,
 			React.createElement(
-				"h1",
+				'h1',
 				null,
-				"Hello World"
+				'Hello World'
 			),
 			React.createElement(
-				"p",
+				'p',
 				null,
-				"This is some text"
+				'This is some text'
 			)
 		);
 	}
 });
-function initReact() {
-	ReactDOM.render(React.createElement("helloWorld", null), document.getElementById("react-container"));
+function run() {
+	React.render(React.createElement('helloWorld', null), document.getElementById("react-container"));
+}
+
+const loadedStates = ['complete', 'loaded', 'interactive'];
+
+if (loadedStates.includes(document.readyState) && document.body) {
+	run();
+} else {
+	window.addEventListener('DOMContentLoaded', run, false);
 }
