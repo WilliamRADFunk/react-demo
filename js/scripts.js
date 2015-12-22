@@ -17,8 +17,16 @@ var rightRed = {
 var Introduction = React.createClass({
 	displayName: 'Introduction',
 
+	statics: {
+		changeState: function (newState) {
+			this.setState({ displayMessage: false });
+		}
+	},
+	getInitialState: function () {
+		return { displayMessage: true };
+	},
 	render: function () {
-		return React.createElement(
+		return this.state.displayMessage ? React.createElement(
 			'div',
 			null,
 			React.createElement(
@@ -41,24 +49,26 @@ var Introduction = React.createClass({
 				{ style: rightRed },
 				'and discover the truth about your future.'
 			)
-		);
+		) : null;
 	}
 });
 var StartButton = React.createClass({
 	displayName: 'StartButton',
 
 	getInitialState: function () {
-		return null;
+		return { displayMessage: true };
 	},
 	handleClick: function (event) {
 		console.log("Starting...");
+		this.setState({ displayMessage: false });
+		Introduction.setState({ displayMessage: false });
 	},
 	render: function () {
-		return React.createElement(
+		return this.state.displayMessage ? React.createElement(
 			'button',
 			{ id: 'start-button', onClick: this.handleClick },
 			'START!'
-		);
+		) : null;
 	}
 });
 function run() {

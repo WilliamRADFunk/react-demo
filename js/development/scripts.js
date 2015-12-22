@@ -15,32 +15,45 @@ var rightRed = {
 	textAlign: 'right'
 };
 var Introduction = React.createClass({
+	statics:
+	{
+		changeState: function(newState)
+		{
+			this.setState({displayMessage: false});
+		}
+	},
+	getInitialState: function()
+	{
+		return {displayMessage: true};
+	},
 	render: function() {
-		return (
+		return (this.state.displayMessage ? (
 			<div>
 				<h1 style={centerBlack}>Discover Your Destined Career Path:</h1>
 				<h2 style={leftGreen}>answer the following questions;</h2>
 				<h3 style={centerBlue}>solve the puzzles...</h3>
 				<h4 style={rightRed}>and discover the truth about your future.</h4>
-			</div> );
+			</div> ) : null);
 	}
 });
 var StartButton = React.createClass
 ({
 	getInitialState: function()
 	{
-		return null;
+		return {displayMessage: true};
 	},
 	handleClick: function(event)
 	{
 		console.log("Starting...");
+		this.setState({displayMessage: false});
+		Introduction.setState({displayMessage: false});
 	},
 	render: function()
 	{
-		return (
+		return (this.state.displayMessage ? (
 			<button id="start-button" onClick={this.handleClick}>
 				START!
-			</button> );
+			</button> ) : null);
 	}
 });
 function run()
