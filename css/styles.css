@@ -25,9 +25,13 @@ h4
 }
 #start-button
 {
-	background-color: #FF5599;
-	margin: 0px auto;
+	background-color: #FF00FF;
+	float: right;
 	width: 100px;
+}
+#start-button:active
+{
+	background-color: #FFFF00;
 }
 #start-button:focus
 {

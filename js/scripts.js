@@ -27,12 +27,24 @@ var Project = React.createClass({
 	},
 	onPhaseChange: function (oldPhase) {
 		console.log("Old phase was " + oldPhase);
+		if (oldPhase === "phase1") {
+			console.log("Changing to phase 2");
+			this.setState({ phase1: false });
+			this.setState({ phase2: true });
+		} else if (oldPhase === "phase2") {
+			console.log("Changing to phase 3");
+			this.setState({ phase2: false });
+			this.setState({ phase3: true });
+		} else if (oldPhase === "phase3") {
+			console.log("Changing to phase 4");
+			this.setState({ phase3: false });
+			this.setState({ phase4: true });
+		} else {
+			console.log("Changing to end phase");
+			this.setState({ phase4: false });
+		}
 	},
 	render: function () {
-		if (StartButton.value == "dirty") {
-			console.log("Let me know.");
-		}
-		console.log("Hello.");
 		return React.createElement(
 			'div',
 			null,
@@ -44,11 +56,8 @@ var Project = React.createClass({
 var Introduction = React.createClass({
 	displayName: 'Introduction',
 
-	getInitialState: function () {
-		return { displayMessage: this.props.display };
-	},
 	render: function () {
-		return this.state.displayMessage ? React.createElement(
+		return this.props.display ? React.createElement(
 			'div',
 			null,
 			React.createElement(
@@ -77,16 +86,12 @@ var Introduction = React.createClass({
 var StartButton = React.createClass({
 	displayName: 'StartButton',
 
-	getInitialState: function () {
-		return { displayMessage: this.props.display };
-	},
 	handleClick: function (event) {
 		console.log("Starting...");
-		this.setState({ displayMessage: false });
 		this.props.onPhaseChange("phase1");
 	},
 	render: function () {
-		return this.state.displayMessage ? React.createElement(
+		return this.props.display ? React.createElement(
 			'button',
 			{ id: 'start-button', onClick: this.handleClick },
 			'START!'
