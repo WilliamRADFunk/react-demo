@@ -9,7 +9,7 @@ var helloWorld = React.createClass({
 });
 function run()
 {
-	React.render(<helloWorld />, document.getElementById("react-container"));
+	ReactDOM.render(<helloWorld />, document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
