@@ -7,4 +7,7 @@ var helloWorld = React.createClass({
 			</div> );
 	}
 });
-ReactDOM.render(<helloWorld />, document.getElementById("container"));
+function initReact()
+{
+	ReactDOM.render(<helloWorld />, document.getElementById("react-container"));
+}
