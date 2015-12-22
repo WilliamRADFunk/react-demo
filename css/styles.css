@@ -1,0 +1,10 @@
+#start-button
+{
+	background-color: #FF5599;
+	margin: auto auto;
+	width: 100px;
+}
+#start-button:focus
+{
+	outline: 0;
+}

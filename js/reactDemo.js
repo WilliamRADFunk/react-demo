@@ -39,13 +39,29 @@ var Introduction = React.createClass({
 			React.createElement(
 				'h4',
 				{ style: rightRed },
-				'and discover the truth about yourself'
+				'and discover the truth about yourself.'
 			)
 		);
 	}
 });
+var StartButton = React.createClass({
+	displayName: 'StartButton',
+
+	render: function () {
+		return React.createElement(
+			'button',
+			{ id: 'start-button' },
+			'START!'
+		);
+	}
+});
 function run() {
-	ReactDOM.render(React.createElement(Introduction, null), document.getElementById("react-container"));
+	ReactDOM.render(React.createElement(
+		'div',
+		null,
+		React.createElement(Introduction, null),
+		React.createElement(StartButton, null)
+	), document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];

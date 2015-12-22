@@ -21,13 +21,24 @@ var Introduction = React.createClass({
 				<h1 style={centerBlack}>Discover Your Secret Identity</h1>
 				<h2 style={leftGreen}>Answer the following questions;</h2>
 				<h3 style={centerBlue}>solve the puzzles...</h3>
-				<h4 style={rightRed}>and discover the truth about yourself</h4>
+				<h4 style={rightRed}>and discover the truth about yourself.</h4>
 			</div> );
+	}
+});
+var StartButton = React.createClass({
+	render: function() {
+		return (
+			<button id="start-button">
+				START!
+			</button> );
 	}
 });
 function run()
 {
-	ReactDOM.render(<Introduction />, document.getElementById("react-container"));
+	ReactDOM.render(<div>
+						<Introduction />
+						<StartButton />
+					</div>, document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
