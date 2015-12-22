@@ -1,5 +1,5 @@
 {
-  "name": "reactDemo",
+  "name": "react-demo",
   "version": "1.0.0",
   "babel": {
     "presets": [
@@ -7,7 +7,7 @@
     ]
   },
   "description": "\"install node\r install globally: gulp-babel",
-  "main": "reactDemo.js",
+  "main": "scripts.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
