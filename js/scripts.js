@@ -47,13 +47,16 @@ var Introduction = React.createClass({
 var StartButton = React.createClass({
 	displayName: 'StartButton',
 
-	start: function () {
+	getInitialState: function () {
+		return null;
+	},
+	handleClick: function (event) {
 		console.log("Starting...");
 	},
 	render: function () {
 		return React.createElement(
 			'button',
-			{ id: 'start-button', onclick: this.start },
+			{ id: 'start-button', onClick: this.handleClick },
 			'START!'
 		);
 	}
