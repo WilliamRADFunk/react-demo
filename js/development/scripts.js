@@ -18,10 +18,10 @@ var Introduction = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<h1 style={centerBlack}>Discover Your Secret Identity</h1>
-				<h2 style={leftGreen}>Answer the following questions;</h2>
+				<h1 style={centerBlack}>Discover Your Destined Career Path:</h1>
+				<h2 style={leftGreen}>answer the following questions;</h2>
 				<h3 style={centerBlue}>solve the puzzles...</h3>
-				<h4 style={rightRed}>and discover the truth about yourself.</h4>
+				<h4 style={rightRed}>and discover the truth about your future.</h4>
 			</div> );
 	}
 });

@@ -24,12 +24,12 @@ var Introduction = React.createClass({
 			React.createElement(
 				'h1',
 				{ style: centerBlack },
-				'Discover Your Secret Identity'
+				'Discover Your Destined Career Path:'
 			),
 			React.createElement(
 				'h2',
 				{ style: leftGreen },
-				'Answer the following questions;'
+				'answer the following questions;'
 			),
 			React.createElement(
 				'h3',
@@ -39,7 +39,7 @@ var Introduction = React.createClass({
 			React.createElement(
 				'h4',
 				{ style: rightRed },
-				'and discover the truth about yourself.'
+				'and discover the truth about your future.'
 			)
 		);
 	}
