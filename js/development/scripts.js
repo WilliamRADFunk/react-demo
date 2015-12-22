@@ -14,54 +14,72 @@ var rightRed = {
 	color: 'red',
 	textAlign: 'right'
 };
-var Introduction = React.createClass({
-	statics:
-	{
-		changeState: function(newState)
-		{
-			this.setState({displayMessage: false});
-		}
-	},
+var Project = React.createClass
+({
 	getInitialState: function()
 	{
-		return {displayMessage: true};
+		return (
+		{
+			phase1: true,
+			phase2: false,
+			phase3: false,
+			phase4: false
+		});
+	},
+	render: function()
+	{
+		if(StartButton.value == "dirty")
+		{
+			console.log("Let me know.");
+		}
+		console.log("Hello.");
+		return (
+			<div>
+				<Introduction display={this.state.phase1} />
+				<StartButton display={this.state.phase1} value="pristine"/>
+			</div> );
+	}
+});
+var Introduction = React.createClass
+({
+	getInitialState: function()
+	{
+		return {displayMessage: this.props.display};
 	},
 	render: function() {
-		return (this.state.displayMessage ? (
+		return (
+			this.state.displayMessage ? (
 			<div>
 				<h1 style={centerBlack}>Discover Your Destined Career Path:</h1>
 				<h2 style={leftGreen}>answer the following questions;</h2>
 				<h3 style={centerBlue}>solve the puzzles...</h3>
 				<h4 style={rightRed}>and discover the truth about your future.</h4>
-			</div> ) : null);
+			</div> ) : null );
 	}
 });
 var StartButton = React.createClass
 ({
 	getInitialState: function()
 	{
-		return {displayMessage: true};
+		return {displayMessage: this.props.display};
 	},
 	handleClick: function(event)
 	{
 		console.log("Starting...");
 		this.setState({displayMessage: false});
-		Introduction.setState({displayMessage: false});
+		this.props.value = "dirty";
 	},
 	render: function()
 	{
 		return (this.state.displayMessage ? (
 			<button id="start-button" onClick={this.handleClick}>
 				START!
-			</button> ) : null);
+			</button> ) : null );
 	}
 });
 function run()
 {
-	ReactDOM.render(<div>
-						<Introduction />
-						<StartButton />
-					</div>, document.getElementById("react-container"));
+	ReactDOM.render(<Project />, document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];

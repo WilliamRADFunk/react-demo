@@ -14,16 +14,35 @@ var rightRed = {
 	color: 'red',
 	textAlign: 'right'
 };
+var Project = React.createClass({
+	displayName: 'Project',
+
+	getInitialState: function () {
+		return {
+			phase1: true,
+			phase2: false,
+			phase3: false,
+			phase4: false
+		};
+	},
+	render: function () {
+		if (StartButton.value == "dirty") {
+			console.log("Let me know.");
+		}
+		console.log("Hello.");
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(Introduction, { display: this.state.phase1 }),
+			React.createElement(StartButton, { display: this.state.phase1, value: 'pristine' })
+		);
+	}
+});
 var Introduction = React.createClass({
 	displayName: 'Introduction',
 
-	statics: {
-		changeState: function (newState) {
-			this.setState({ displayMessage: false });
-		}
-	},
 	getInitialState: function () {
-		return { displayMessage: true };
+		return { displayMessage: this.props.display };
 	},
 	render: function () {
 		return this.state.displayMessage ? React.createElement(
@@ -56,12 +75,12 @@ var StartButton = React.createClass({
 	displayName: 'StartButton',
 
 	getInitialState: function () {
-		return { displayMessage: true };
+		return { displayMessage: this.props.display };
 	},
 	handleClick: function (event) {
 		console.log("Starting...");
 		this.setState({ displayMessage: false });
-		Introduction.setState({ displayMessage: false });
+		this.props.value = "dirty";
 	},
 	render: function () {
 		return this.state.displayMessage ? React.createElement(
@@ -72,12 +91,7 @@ var StartButton = React.createClass({
 	}
 });
 function run() {
-	ReactDOM.render(React.createElement(
-		'div',
-		null,
-		React.createElement(Introduction, null),
-		React.createElement(StartButton, null)
-	), document.getElementById("react-container"));
+	ReactDOM.render(React.createElement(Project, null), document.getElementById("react-container"));
 }
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
