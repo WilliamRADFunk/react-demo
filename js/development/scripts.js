@@ -26,6 +26,10 @@ var Project = React.createClass
 			phase4: false
 		});
 	},
+	onPhaseChange: function(oldPhase)
+	{
+		console.log("Old phase was " + oldPhase);
+	},
 	render: function()
 	{
 		if(StartButton.value == "dirty")
@@ -36,7 +40,7 @@ var Project = React.createClass
 		return (
 			<div>
 				<Introduction display={this.state.phase1} />
-				<StartButton display={this.state.phase1} value="pristine"/>
+				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
 });
@@ -67,7 +71,7 @@ var StartButton = React.createClass
 	{
 		console.log("Starting...");
 		this.setState({displayMessage: false});
-		this.props.value = "dirty";
+		this.props.onPhaseChange("phase1");
 	},
 	render: function()
 	{

@@ -25,6 +25,9 @@ var Project = React.createClass({
 			phase4: false
 		};
 	},
+	onPhaseChange: function (oldPhase) {
+		console.log("Old phase was " + oldPhase);
+	},
 	render: function () {
 		if (StartButton.value == "dirty") {
 			console.log("Let me know.");
@@ -34,7 +37,7 @@ var Project = React.createClass({
 			'div',
 			null,
 			React.createElement(Introduction, { display: this.state.phase1 }),
-			React.createElement(StartButton, { display: this.state.phase1, value: 'pristine' })
+			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange })
 		);
 	}
 });
@@ -80,7 +83,7 @@ var StartButton = React.createClass({
 	handleClick: function (event) {
 		console.log("Starting...");
 		this.setState({ displayMessage: false });
-		this.props.value = "dirty";
+		this.props.onPhaseChange("phase1");
 	},
 	render: function () {
 		return this.state.displayMessage ? React.createElement(
