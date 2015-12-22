@@ -1,3 +1,4 @@
+/**********Inline CSS starts here *****************************************************************/
 var centerBlack = {
 	color: 'black',
 	textAlign: 'center'
@@ -14,6 +15,8 @@ var rightRed = {
 	color: 'red',
 	textAlign: 'right'
 };
+/**********Inline CSS ends here *******************************************************************/
+/**********Root Element starts here ***************************************************************/
 var Project = React.createClass({
 	displayName: 'Project',
 
@@ -26,21 +29,21 @@ var Project = React.createClass({
 		};
 	},
 	onPhaseChange: function (oldPhase) {
-		console.log("Old phase was " + oldPhase);
+		console.log("Old phase was " + oldPhase); //DEBUG
 		if (oldPhase === "phase1") {
-			console.log("Changing to phase 2");
+			console.log("Changing to phase 2"); //DEBUG
 			this.setState({ phase1: false });
 			this.setState({ phase2: true });
 		} else if (oldPhase === "phase2") {
-			console.log("Changing to phase 3");
+			console.log("Changing to phase 3"); //DEBUG
 			this.setState({ phase2: false });
 			this.setState({ phase3: true });
 		} else if (oldPhase === "phase3") {
-			console.log("Changing to phase 4");
+			console.log("Changing to phase 4"); //DEBUG
 			this.setState({ phase3: false });
 			this.setState({ phase4: true });
 		} else {
-			console.log("Changing to end phase");
+			console.log("Changing to end phase"); //DEBUG
 			this.setState({ phase4: false });
 		}
 	},
@@ -53,6 +56,8 @@ var Project = React.createClass({
 		);
 	}
 });
+/**********Root Elements ends here ****************************************************************/
+/**********Phase1 Elements start here *************************************************************/
 var Introduction = React.createClass({
 	displayName: 'Introduction',
 
@@ -87,7 +92,7 @@ var StartButton = React.createClass({
 	displayName: 'StartButton',
 
 	handleClick: function (event) {
-		console.log("Starting...");
+		console.log("Starting..."); //DEBUG
 		this.props.onPhaseChange("phase1");
 	},
 	render: function () {
@@ -98,6 +103,17 @@ var StartButton = React.createClass({
 		) : null;
 	}
 });
+/**********Phase1 Elements end here ***************************************************************/
+/**********Phase2 Elements start here *************************************************************/
+
+/**********Phase2 Elements end here ***************************************************************/
+/**********Phase3 Elements start here *************************************************************/
+
+/**********Phase3 Elements end here ***************************************************************/
+/**********Phase4 Elements start here *************************************************************/
+
+/**********Phase4 Elements end here ***************************************************************/
+/**********Loadup JavaScript starts here **********************************************************/
 function run() {
 	ReactDOM.render(React.createElement(Project, null), document.getElementById("react-container"));
 }
@@ -109,3 +125,4 @@ if (loadedStates.includes(document.readyState) && document.body) {
 } else {
 	window.addEventListener('DOMContentLoaded', run, false);
 }
+/**********Loadup JavaScript ends here ************************************************************/
