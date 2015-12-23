@@ -35,10 +35,12 @@ var Project = React.createClass
 	onPersonalityChange: function(data)
 	{
 		console.log("Personality Components are " + data); //DEBUG
+		digestPersonality(data);
 	},
 	onCharacterChange: function(data)
 	{
 		console.log("Character Components are " + data); //DEBUG
+		digestCharacter(data);
 	},
 	onPhaseChange: function(oldPhase)
 	{
@@ -254,6 +256,94 @@ else
 }
 /**********Loadup JavaScript ends here ************************************************************/
 /**********Anytime JavaScript starts here *********************************************************/
+function digestPersonality(data)
+{
+	if($.inArray("outdoors", data) !== -1)
+	{
+		if($.inArray("social", data) !== -1)
+		{
+			if($.inArray("manual", data) !== -1)
+			{
+				if($.inArray("thoughtless", data) !== -1)
+				{
+					if($.inArray("bigbucks", data) !== -1)
+					{
+
+					}
+					else if($.inArray("satisfaction", data) !== -1)
+					{
+
+					}
+				}
+				else if($.inArray("challenge", data) !== -1)
+				{
+					if($.inArray("bigbucks", data) !== -1)
+					{
+
+					}
+					else if($.inArray("satisfaction", data) !== -1)
+					{
+
+					}
+
+				}
+			}
+			else if($.inArray("challenge", data) !== -1)
+			{
+
+			}
+		}
+		else if($.inArray("anti-social", data) !== -1)
+		{
+			if($.inArray("manual", data) !== -1)
+			{
+				if($.inArray("thoughtless", data) !== -1)
+				{
+
+				}
+				else if($.inArray("challenge", data) !== -1)
+				{
+
+				}
+			}
+			else if($.inArray("challenge", data) !== -1)
+			{
+
+			}
+
+		}
+	}
+	else if($.inArray("indoors", data) !== -1)
+	{
+		if($.inArray("social", data) !== -1)
+		{
+			if($.inArray("manual", data) !== -1)
+			{
+
+			}
+			else if($.inArray("challenge", data) !== -1)
+			{
+
+			}
+		}
+		else if($.inArray("anti-social", data) !== -1)
+		{
+			if($.inArray("manual", data) !== -1)
+			{
+
+			}
+			else if($.inArray("challenge", data) !== -1)
+			{
+
+			}
+		}
+	}
+	else
+	{
+		
+	}
+	careerChain.push();
+}
 function killEvent(e)
 {
 	e.preventDefault();
