@@ -62,7 +62,7 @@ var Project = React.createClass
 			<div>
 				<Introduction display={this.state.phase1}/>
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
-				<PersonalityPortion display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
+				<PersonalityPortion data="test" display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
 				<BackgroundInfo display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
@@ -105,6 +105,21 @@ var PersonalityPortion = React.createClass
 	handleClick: function(event)
 	{
 		console.log("Submitting..."); //DEBUG
+		var data = "";
+		var listItems = $("#personality-form li");
+		listItems.each(function(index, li)
+		{
+			console.log("List Item");
+			if(li.firstChild.checked)
+			{
+				console.log("Checked " + li.firstChild.value);
+				data += (li.firstChild.value + ",");
+			}
+		});
+		console.log("Your datastream: " + data);
+		console.log("Your props: " + this.props.data);
+		this.props.data = data;
+		console.log("Your choices were: " + this.props.data); //DEBUG
 		this.props.onPhaseChange("phase2");
 		killEvent(event);
 	},
@@ -113,7 +128,7 @@ var PersonalityPortion = React.createClass
 		return (this.props.display ? (
 			<form name="personality">
 				<label>Check the following that apply to you:</label>
-				<ul>
+				<ul id="personality-form">
 					<li><input name="personality" type="checkbox" value="outdoors" />I don&#39;t like feeling cooped up (Outdoor Work)</li>
 					<li><input name="personality" type="checkbox" value="indoors" />Being outside is over-rated (Indoor Work)</li>
 					<li><input name="personality" type="checkbox" value="social" />I like working in a team environment (Social)</li>

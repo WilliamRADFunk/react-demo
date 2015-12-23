@@ -53,7 +53,7 @@ var Project = React.createClass({
 			null,
 			React.createElement(Introduction, { display: this.state.phase1 }),
 			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange }),
-			React.createElement(PersonalityPortion, { display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
+			React.createElement(PersonalityPortion, { data: 'test', display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
 			React.createElement(BackgroundInfo, { display: this.state.phase3, onPhaseChange: this.onPhaseChange })
 		);
 	}
@@ -113,6 +113,19 @@ var PersonalityPortion = React.createClass({
 
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
+		var data = "";
+		var listItems = $("#personality-form li");
+		listItems.each(function (index, li) {
+			console.log("List Item");
+			if (li.firstChild.checked) {
+				console.log("Checked " + li.firstChild.value);
+				data += li.firstChild.value + ",";
+			}
+		});
+		console.log("Your datastream: " + data);
+		console.log("Your props: " + this.props.data);
+		this.props.data = data;
+		console.log("Your choices were: " + this.props.data); //DEBUG
 		this.props.onPhaseChange("phase2");
 		killEvent(event);
 	},
@@ -127,7 +140,7 @@ var PersonalityPortion = React.createClass({
 			),
 			React.createElement(
 				'ul',
-				null,
+				{ id: 'personality-form' },
 				React.createElement(
 					'li',
 					null,
