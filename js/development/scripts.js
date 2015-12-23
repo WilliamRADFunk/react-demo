@@ -1,3 +1,6 @@
+/**********Main Variables start here **************************************************************/
+var careerChain = [];
+/**********Main Variables end here ****************************************************************/
 /**********Inline CSS starts here *****************************************************************/
 var centerBlack = {
 	color: 'black',
@@ -33,6 +36,10 @@ var Project = React.createClass
 	{
 		console.log("Personality Components are " + data); //DEBUG
 	},
+	onCharacterChange: function(data)
+	{
+		console.log("Character Components are " + data); //DEBUG
+	},
 	onPhaseChange: function(oldPhase)
 	{
 		console.log("Old phase was " + oldPhase); //DEBUG
@@ -67,7 +74,7 @@ var Project = React.createClass
 				<Introduction display={this.state.phase1}/>
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
 				<PersonalityPortion onPersonalityChange={this.onPersonalityChange} display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
-				<CharacterPortion display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
+				<CharacterPortion onCharacterChange={this.onCharacterChange} display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
 				<BackgroundPortion display={this.state.phase4} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
@@ -153,32 +160,48 @@ var CharacterPortion = React.createClass
 ({
 	handleClick: function(event)
 	{
-		console.log("Submitting..."); //DEBUG
+		var data = [];
+		var listItems = $("#strength li");
+		var listItems2 = $("#flaw li");
+		listItems.each(function(index, li) { if(li.firstChild.checked) data.push(li.firstChild.value); });
+		listItems2.each(function(index, li) { if(li.firstChild.checked) data.push(li.firstChild.value); });
+		this.props.onCharacterChange(data);
 		this.props.onPhaseChange("phase3");
 		killEvent(event);
 	},
 	renderDisplay: function()
 	{
 		return (
-			<form name="character-info-strong">
+			<form>
 				<div id="strongest-characteristic">
 					<label>What&#39;s your strongest character trait?</label>
-					<ul>
-						<input name="character-info-strong" type="radio" value="independence" />Independence
-						<input name="character-info-strong" type="radio" value="courage" />Courage
-						<input name="character-info-strong" type="radio" value="trustworthiness" />Trustworthiness
-						<input name="character-info-strong" type="radio" value="punctuality" />Punctuality
-						<input name="character-info-strong" type="radio" value="reliability" />Reliability
-						<input name="character-info-strong" type="radio" value="kind" />Kind-Hearted
-						<input name="character-info-strong" type="radio" value="independence" />Independence
-						<input name="character-info-strong" type="radio" value="courage" />Courage
-						<input name="character-info-strong" type="radio" value="independence" />Independence
-						<input name="character-info-strong" type="radio" value="courage" />Courage
-
+					<ul id="strength">
+						<li><input name="character-info-strong" type="radio" value="independence" />Independence</li>
+						<li><input name="character-info-strong" type="radio" value="courage" />Courage</li>
+						<li><input name="character-info-strong" type="radio" value="trustworthiness" />Trustworthiness</li>
+						<li><input name="character-info-strong" type="radio" value="punctuality" />Punctuality</li>
+						<li><input name="character-info-strong" type="radio" value="reliability" />Reliability</li>
+						<li><input name="character-info-strong" type="radio" value="kind" />Kind-Hearted</li>
+						<li><input name="character-info-strong" type="radio" value="empathy" />Empathetic</li>
+						<li><input name="character-info-strong" type="radio" value="initiative" />Self-Motivated</li>
+						<li><input name="character-info-strong" type="radio" value="intelligent" />Intelligent</li>
+						<li><input name="character-info-strong" type="radio" value="strong" />Physically-Strong</li>
 					</ul>
 				</div>
-				<div id="weakest-characteristic">
-
+				<div id="biggest-flaw">
+					<label>What&#39;s your biggest character flaw?</label>
+					<ul id="flaw">
+						<li><input name="character-info-flaw" type="radio" value="tardy" />Tardiness</li>
+						<li><input name="character-info-flaw" type="radio" value="distracted" />Easily-Distracted</li>
+						<li><input name="character-info-flaw" type="radio" value="greedy" />Greedy</li>
+						<li><input name="character-info-flaw" type="radio" value="weak" />Physically-Weak</li>
+						<li><input name="character-info-flaw" type="radio" value="insecure" />Self-Conscious</li>
+						<li><input name="character-info-flaw" type="radio" value="rude" />Rude</li>
+						<li><input name="character-info-flaw" type="radio" value="lazy" />Procrastinator</li>
+						<li><input name="character-info-flaw" type="radio" value="humorless" />Humorless</li>
+						<li><input name="character-info-flaw" type="radio" value="competitive" />Hyper-Competitive</li>
+						<li><input name="character-info-flaw" type="radio" value="workaholic" />Workaholic</li>
+					</ul>
 				</div>
 				<button onClick={this.handleClick}>SUBMIT</button>
 			</form> );

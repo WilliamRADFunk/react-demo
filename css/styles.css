@@ -51,9 +51,10 @@ ul
 {
 	outline: 0;
 }
-#strongest-characteristic,
-#weakest-characteristic
+#biggest-flaw,
+#strongest-characteristic
 {
 	float: left;
+	margin-left: 24px;
 	width: 275px;
 }

@@ -1,3 +1,6 @@
+/**********Main Variables start here **************************************************************/
+var careerChain = [];
+/**********Main Variables end here ****************************************************************/
 /**********Inline CSS starts here *****************************************************************/
 var centerBlack = {
 	color: 'black',
@@ -31,6 +34,9 @@ var Project = React.createClass({
 	onPersonalityChange: function (data) {
 		console.log("Personality Components are " + data); //DEBUG
 	},
+	onCharacterChange: function (data) {
+		console.log("Character Components are " + data); //DEBUG
+	},
 	onPhaseChange: function (oldPhase) {
 		console.log("Old phase was " + oldPhase); //DEBUG
 		if (oldPhase === "phase1") {
@@ -57,7 +63,7 @@ var Project = React.createClass({
 			React.createElement(Introduction, { display: this.state.phase1 }),
 			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange }),
 			React.createElement(PersonalityPortion, { onPersonalityChange: this.onPersonalityChange, display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
-			React.createElement(CharacterPortion, { display: this.state.phase3, onPhaseChange: this.onPhaseChange }),
+			React.createElement(CharacterPortion, { onCharacterChange: this.onCharacterChange, display: this.state.phase3, onPhaseChange: this.onPhaseChange }),
 			React.createElement(BackgroundPortion, { display: this.state.phase4, onPhaseChange: this.onPhaseChange })
 		);
 	}
@@ -219,14 +225,23 @@ var CharacterPortion = React.createClass({
 	displayName: 'CharacterPortion',
 
 	handleClick: function (event) {
-		console.log("Submitting..."); //DEBUG
+		var data = [];
+		var listItems = $("#strength li");
+		var listItems2 = $("#flaw li");
+		listItems.each(function (index, li) {
+			if (li.firstChild.checked) data.push(li.firstChild.value);
+		});
+		listItems2.each(function (index, li) {
+			if (li.firstChild.checked) data.push(li.firstChild.value);
+		});
+		this.props.onCharacterChange(data);
 		this.props.onPhaseChange("phase3");
 		killEvent(event);
 	},
 	renderDisplay: function () {
 		return React.createElement(
 			'form',
-			{ name: 'character-info-strong' },
+			null,
 			React.createElement(
 				'div',
 				{ id: 'strongest-characteristic' },
@@ -237,30 +252,142 @@ var CharacterPortion = React.createClass({
 				),
 				React.createElement(
 					'ul',
-					null,
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
-					'Independence',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
-					'Courage',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'trustworthiness' }),
-					'Trustworthiness',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'punctuality' }),
-					'Punctuality',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'reliability' }),
-					'Reliability',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'kind' }),
-					'Kind-Hearted',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
-					'Independence',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
-					'Courage',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
-					'Independence',
-					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
-					'Courage'
+					{ id: 'strength' },
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
+						'Independence'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
+						'Courage'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'trustworthiness' }),
+						'Trustworthiness'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'punctuality' }),
+						'Punctuality'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'reliability' }),
+						'Reliability'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'kind' }),
+						'Kind-Hearted'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'empathy' }),
+						'Empathetic'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'initiative' }),
+						'Self-Motivated'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'intelligent' }),
+						'Intelligent'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'strong' }),
+						'Physically-Strong'
+					)
 				)
 			),
-			React.createElement('div', { id: 'weakest-characteristic' }),
+			React.createElement(
+				'div',
+				{ id: 'biggest-flaw' },
+				React.createElement(
+					'label',
+					null,
+					'What\'s your biggest character flaw?'
+				),
+				React.createElement(
+					'ul',
+					{ id: 'flaw' },
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'tardy' }),
+						'Tardiness'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'distracted' }),
+						'Easily-Distracted'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'greedy' }),
+						'Greedy'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'weak' }),
+						'Physically-Weak'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'insecure' }),
+						'Self-Conscious'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'rude' }),
+						'Rude'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'lazy' }),
+						'Procrastinator'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'humorless' }),
+						'Humorless'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'competitive' }),
+						'Hyper-Competitive'
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement('input', { name: 'character-info-flaw', type: 'radio', value: 'workaholic' }),
+						'Workaholic'
+					)
+				)
+			),
 			React.createElement(
 				'button',
 				{ onClick: this.handleClick },
