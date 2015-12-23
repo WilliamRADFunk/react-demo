@@ -29,6 +29,10 @@ var Project = React.createClass
 			phase4: false
 		});
 	},
+	onPersonalityChange: function(data)
+	{
+		console.log("Personality Components are " + data); //DEBUG
+	},
 	onPhaseChange: function(oldPhase)
 	{
 		console.log("Old phase was " + oldPhase); //DEBUG
@@ -62,7 +66,7 @@ var Project = React.createClass
 			<div>
 				<Introduction display={this.state.phase1}/>
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
-				<PersonalityPortion data="test" display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
+				<PersonalityPortion onPersonalityChange={this.onPersonalityChange} display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
 				<BackgroundInfo display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
@@ -105,7 +109,7 @@ var PersonalityPortion = React.createClass
 	handleClick: function(event)
 	{
 		console.log("Submitting..."); //DEBUG
-		var data = "";
+		var data = [];
 		var listItems = $("#personality-form li");
 		listItems.each(function(index, li)
 		{
@@ -113,13 +117,11 @@ var PersonalityPortion = React.createClass
 			if(li.firstChild.checked)
 			{
 				console.log("Checked " + li.firstChild.value);
-				data += (li.firstChild.value + ",");
+				data.push(li.firstChild.value);
 			}
 		});
 		console.log("Your datastream: " + data);
-		console.log("Your props: " + this.props.data);
-		this.props.data = data;
-		console.log("Your choices were: " + this.props.data); //DEBUG
+		this.props.onPersonalityChange(data);
 		this.props.onPhaseChange("phase2");
 		killEvent(event);
 	},
