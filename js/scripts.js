@@ -66,8 +66,8 @@ var Project = React.createClass({
 var Introduction = React.createClass({
 	displayName: 'Introduction',
 
-	render: function () {
-		return this.props.display ? React.createElement(
+	renderDisplay: function () {
+		return React.createElement(
 			'div',
 			null,
 			React.createElement(
@@ -90,23 +90,27 @@ var Introduction = React.createClass({
 				{ style: rightRed },
 				'and discover the truth about your future.'
 			)
-		) : null;
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
 	}
 });
 var StartButton = React.createClass({
 	displayName: 'StartButton',
 
 	handleClick: function (event) {
-		console.log("Starting..."); //DEBUG
 		this.props.onPhaseChange("phase1");
-		killEvent(event);
 	},
-	render: function () {
-		return this.props.display ? React.createElement(
+	renderDisplay: function () {
+		return React.createElement(
 			'button',
 			{ id: 'start-button', onClick: this.handleClick },
 			'START!'
-		) : null;
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
 	}
 });
 /**********Phase1 Elements end here ***************************************************************/
@@ -115,23 +119,17 @@ var PersonalityPortion = React.createClass({
 	displayName: 'PersonalityPortion',
 
 	handleClick: function (event) {
-		console.log("Submitting..."); //DEBUG
 		var data = [];
 		var listItems = $("#personality-form li");
 		listItems.each(function (index, li) {
-			console.log("List Item");
-			if (li.firstChild.checked) {
-				console.log("Checked " + li.firstChild.value);
-				data.push(li.firstChild.value);
-			}
+			if (li.firstChild.checked) data.push(li.firstChild.value);
 		});
-		console.log("Your datastream: " + data);
 		this.props.onPersonalityChange(data);
 		this.props.onPhaseChange("phase2");
 		killEvent(event);
 	},
-	render: function () {
-		return this.props.display ? React.createElement(
+	renderDisplay: function () {
+		return React.createElement(
 			'form',
 			{ name: 'personality' },
 			React.createElement(
@@ -208,7 +206,10 @@ var PersonalityPortion = React.createClass({
 				{ onClick: this.handleClick },
 				'SUBMIT'
 			)
-		) : null;
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
 	}
 });
 /**********Phase2 Elements end here ***************************************************************/
@@ -221,8 +222,8 @@ var BackgroundInfo = React.createClass({
 		this.props.onPhaseChange("phase3");
 		killEvent(event);
 	},
-	render: function () {
-		return this.props.display ? React.createElement(
+	renderDisplay: function () {
+		return React.createElement(
 			'form',
 			{ name: 'background-info' },
 			React.createElement('input', { name: 'background-info', type: 'text' }),
@@ -232,7 +233,10 @@ var BackgroundInfo = React.createClass({
 				{ onClick: this.handleClick },
 				'SUBMIT'
 			)
-		) : null;
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
 	}
 });
 /**********Phase3 Elements end here ***************************************************************/

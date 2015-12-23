@@ -75,31 +75,37 @@ var Project = React.createClass
 /**********Phase1 Elements start here *************************************************************/
 var Introduction = React.createClass
 ({
-	render: function() {
+	renderDisplay: function()
+	{
 		return (
-			this.props.display ? (
 			<div>
 				<h1 style={centerBlack}>Discover Your Destined Career Path:</h1>
 				<h2 style={leftGreen}>answer the following questions;</h2>
 				<h3 style={centerBlue}>solve the puzzles...</h3>
 				<h4 style={rightRed}>and discover the truth about your future.</h4>
-			</div> ) : null );
+			</div> );
+	},
+	render: function()
+	{
+		return (this.props.display ? this.renderDisplay() : null );
 	}
 });
 var StartButton = React.createClass
 ({
 	handleClick: function(event)
 	{
-		console.log("Starting..."); //DEBUG
 		this.props.onPhaseChange("phase1");
-		killEvent(event);
+	},
+	renderDisplay: function()
+	{
+		return (
+			<button id="start-button" onClick={this.handleClick}>
+				START!
+			</button> );
 	},
 	render: function()
 	{
-		return (this.props.display ? (
-			<button id="start-button" onClick={this.handleClick}>
-				START!
-			</button> ) : null );
+		return (this.props.display ? this.renderDisplay() : null );
 	}
 });
 /**********Phase1 Elements end here ***************************************************************/
@@ -108,26 +114,16 @@ var PersonalityPortion = React.createClass
 ({
 	handleClick: function(event)
 	{
-		console.log("Submitting..."); //DEBUG
 		var data = [];
 		var listItems = $("#personality-form li");
-		listItems.each(function(index, li)
-		{
-			console.log("List Item");
-			if(li.firstChild.checked)
-			{
-				console.log("Checked " + li.firstChild.value);
-				data.push(li.firstChild.value);
-			}
-		});
-		console.log("Your datastream: " + data);
+		listItems.each(function(index, li) { if(li.firstChild.checked) data.push(li.firstChild.value); });
 		this.props.onPersonalityChange(data);
 		this.props.onPhaseChange("phase2");
 		killEvent(event);
 	},
-	render: function()
+	renderDisplay: function()
 	{
-		return (this.props.display ? (
+		return (
 			<form name="personality">
 				<label>Check the following that apply to you:</label>
 				<ul id="personality-form">
@@ -143,7 +139,11 @@ var PersonalityPortion = React.createClass
 					<li><input name="personality" type="checkbox" value="freedom" />Give me freedom, or give me a different job (Work Remotely)</li>
 				</ul>
 				<button onClick={this.handleClick}>SUBMIT</button>
-			</form> ) : null );
+			</form> );
+	},
+	render: function()
+	{
+		return (this.props.display ? this.renderDisplay() : null );
 	}
 });
 /**********Phase2 Elements end here ***************************************************************/
@@ -156,14 +156,18 @@ var BackgroundInfo = React.createClass
 		this.props.onPhaseChange("phase3");
 		killEvent(event);
 	},
-	render: function()
+	renderDisplay: function()
 	{
-		return (this.props.display ? (
+		return (
 			<form name="background-info">
 				<input name="background-info" type="text" />
 				<input name="background-info" type="checkbox" value="answer2" />
 				<button onClick={this.handleClick}>SUBMIT</button>
-			</form> ) : null );
+			</form> );
+	},
+	render: function()
+	{
+		return (this.props.display ? this.renderDisplay() : null );
 	}
 });
 /**********Phase3 Elements end here ***************************************************************/
