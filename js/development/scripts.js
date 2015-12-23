@@ -113,16 +113,18 @@ var PersonalityPortion = React.createClass
 		return (this.props.display ? (
 			<form name="personality">
 				<label>Check the following that apply to you:</label>
-				<input name="personality" type="checkbox" value="outdoors" />I don&#39t like feeling cooped up (Outdoor Work)<br/>
-				<input name="personality" type="checkbox" value="indoors" />Being outside is over-rated (Indoor Work)<br/>
-				<input name="personality" type="checkbox" value="social" />I like working in a team environment (Social)<br/>
-				<input name="personality" type="checkbox" value="antisocial" />Other people slow me down. I&#39m a lone wolf (Anti-social)<br/>
-				<input name="personality" type="checkbox" value="manual" />I like working and working out simultaneously (Manual Labor)<br/>
-				<input name="personality" type="checkbox" value="thoughtless" />Give me a simple, repetitive task anytime (No Real Thinking)<br/>
-				<input name="personality" type="checkbox" value="challenge" />Make me work for my money (Mentally Stimulating)<br/>
-				<input name="personality" type="checkbox" value="bigbucks" />Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)<br/>
-				<input name="personality" type="checkbox" value="satisfaction" />I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)<br/>
-				<input name="personality" type="checkbox" value="freedom" />Give me freedom, or give me a different job (Work Remotely)<br/>
+				<ul>
+					<li><input name="personality" type="checkbox" value="outdoors" />I don&#39;t like feeling cooped up (Outdoor Work)</li>
+					<li><input name="personality" type="checkbox" value="indoors" />Being outside is over-rated (Indoor Work)</li>
+					<li><input name="personality" type="checkbox" value="social" />I like working in a team environment (Social)</li>
+					<li><input name="personality" type="checkbox" value="antisocial" />Other people slow me down. I&#39;m a lone wolf (Anti-social)</li>
+					<li><input name="personality" type="checkbox" value="manual" />I like working and working out simultaneously (Manual Labor)</li>
+					<li><input name="personality" type="checkbox" value="thoughtless" />Give me a simple, repetitive task anytime (No Real Thinking)</li>
+					<li><input name="personality" type="checkbox" value="challenge" />Make me work for my money (Mentally Stimulating)</li>
+					<li><input name="personality" type="checkbox" value="bigbucks" />Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)</li>
+					<li><input name="personality" type="checkbox" value="satisfaction" />I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)</li>
+					<li><input name="personality" type="checkbox" value="freedom" />Give me freedom, or give me a different job (Work Remotely)</li>
+				</ul>
 				<button onClick={this.handleClick}>SUBMIT</button>
 			</form> ) : null );
 	}

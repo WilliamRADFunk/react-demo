@@ -125,36 +125,70 @@ var PersonalityPortion = React.createClass({
 				null,
 				'Check the following that apply to you:'
 			),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'outdoors' }),
-			'I don&#39t like feeling cooped up (Outdoor Work)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'indoors' }),
-			'Being outside is over-rated (Indoor Work)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'social' }),
-			'I like working in a team environment (Social)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'antisocial' }),
-			'Other people slow me down. I&#39m a lone wolf (Anti-social)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'manual' }),
-			'I like working and working out simultaneously (Manual Labor)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'thoughtless' }),
-			'Give me a simple, repetitive task anytime (No Real Thinking)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'challenge' }),
-			'Make me work for my money (Mentally Stimulating)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'bigbucks' }),
-			'Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'satisfaction' }),
-			'I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)',
-			React.createElement('br', null),
-			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'freedom' }),
-			'Give me freedom, or give me a different job (Work Remotely)',
-			React.createElement('br', null),
+			React.createElement(
+				'ul',
+				null,
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'outdoors' }),
+					'I don\'t like feeling cooped up (Outdoor Work)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'indoors' }),
+					'Being outside is over-rated (Indoor Work)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'social' }),
+					'I like working in a team environment (Social)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'antisocial' }),
+					'Other people slow me down. I\'m a lone wolf (Anti-social)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'manual' }),
+					'I like working and working out simultaneously (Manual Labor)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'thoughtless' }),
+					'Give me a simple, repetitive task anytime (No Real Thinking)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'challenge' }),
+					'Make me work for my money (Mentally Stimulating)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'bigbucks' }),
+					'Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'satisfaction' }),
+					'I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)'
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement('input', { name: 'personality', type: 'checkbox', value: 'freedom' }),
+					'Give me freedom, or give me a different job (Work Remotely)'
+				)
+			),
 			React.createElement(
 				'button',
 				{ onClick: this.handleClick },
