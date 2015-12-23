@@ -238,11 +238,50 @@ var TimeManagementPortion = React.createClass
 	},
 	handleChange: function(event)
 	{
-		if(event.currentTarget.id === "physical-fitness") this.setState({ fitValue: event.currentTarget.valueAsNumber });
-		else if(event.currentTarget.id === "rest") this.setState({ restValue: event.currentTarget.valueAsNumber });
-		else if(event.currentTarget.id === "learning") this.setState({ learningValue: event.currentTarget.valueAsNumber });
-		else if(event.currentTarget.id === "practicing") this.setState({ practicingValue: event.currentTarget.valueAsNumber });
-		console.log(event.currentTarget);
+		if(event.currentTarget.id === "physical-fitness")
+		{
+			var valChange = this.state.fitValue - event.currentTarget.valueAsNumber;
+			this.setState({ fitValue: event.currentTarget.valueAsNumber });
+			var restVal = this.state.restValue + (valChange * 0.4);
+			this.setState({ restValue: restVal });
+			var learningVal = this.state.learningValue + (valChange * 0.8);
+			this.setState({ learningValue: learningVal });
+			var practicingVal = this.state.practicingValue + (valChange * 0.6);
+			this.setState({ practicingValue: practicingVal });
+		}
+		else if(event.currentTarget.id === "rest")
+		{
+			var valChange = this.state.restValue - event.currentTarget.valueAsNumber;
+			this.setState({ restValue: event.currentTarget.valueAsNumber });
+			var fitVal = this.state.fitValue + (valChange * 0.4);
+			this.setState({ fitValue: fitVal });
+			var learningVal = this.state.learningValue + (valChange * 0.8);
+			this.setState({ learningValue: learningVal });
+			var practicingVal = this.state.practicingValue + (valChange * 0.6);
+			this.setState({ practicingValue: practicingVal });
+		}
+		else if(event.currentTarget.id === "learning")
+		{
+			var valChange = this.state.learningValue - event.currentTarget.valueAsNumber;
+			this.setState({ learningValue: event.currentTarget.valueAsNumber });
+			var fitVal = this.state.fitValue + (valChange * 0.4);
+			this.setState({ fitValue: fitVal });
+			var restVal = this.state.restValue + (valChange * 0.8);
+			this.setState({ restValue: restVal });
+			var practicingVal = this.state.practicingValue + (valChange * 0.6);
+			this.setState({ practicingValue: practicingVal });
+		}
+		else if(event.currentTarget.id === "practicing")
+		{
+			var valChange = this.state.practicingValue - event.currentTarget.valueAsNumber;
+			this.setState({ practicingValue: event.currentTarget.valueAsNumber });
+			var fitVal = this.state.fitValue + (valChange * 0.4);
+			this.setState({ fitValue: fitVal });
+			var restVal = this.state.restValue + (valChange * 0.6);
+			this.setState({ restValue: restVal });
+			var learningVal = this.state.learningValue + (valChange * 0.8);
+			this.setState({ learningValue: learningVal });
+		}
 	},
 	handleClick: function(event)
 	{

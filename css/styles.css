@@ -30,6 +30,8 @@ h4
 input[type=range]
 {
 	cursor: pointer;
+	margin-left: 25px;
+	width: 550px;
 }
 label
 {
@@ -65,4 +67,5 @@ ul
 #time-management-info  label
 {
 	margin-top:20px;
+	text-align: center;
 }
