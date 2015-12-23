@@ -77,6 +77,7 @@ function digestPersonality(data) {
 	careerChain[4] = unskilled_skilled;
 }
 function digestCharacter(data) {}
+function digestTimeManagement(data) {}
 function killEvent(e) {
 	e.preventDefault();
 	e.stopPropagation();

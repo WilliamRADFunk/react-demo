@@ -103,6 +103,10 @@ function digestCharacter(data)
 {
 
 }
+function digestTimeManagement(data)
+{
+	
+}
 function killEvent(e)
 {
 	e.preventDefault();

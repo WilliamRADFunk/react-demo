@@ -25,7 +25,8 @@ var Project = React.createClass({
 			phase1: true,
 			phase2: false,
 			phase3: false,
-			phase4: false
+			phase4: false,
+			phase5: false
 		};
 	},
 	onPersonalityChange: function (data) {
@@ -35,6 +36,10 @@ var Project = React.createClass({
 	onCharacterChange: function (data) {
 		console.log("Character Components are " + data); //DEBUG
 		digestCharacter(data);
+	},
+	onTimeManagementChange: function (data) {
+		console.log("Character Components are " + data); //DEBUG
+		digestTimeManagement(data);
 	},
 	onPhaseChange: function (oldPhase) {
 		console.log("Old phase was " + oldPhase); //DEBUG
@@ -50,9 +55,13 @@ var Project = React.createClass({
 			console.log("Changing to phase 4"); //DEBUG
 			this.setState({ phase3: false });
 			this.setState({ phase4: true });
+		} else if (oldPhase === "phase4") {
+			console.log("Changing to phase 5"); //DEBUG
+			this.setState({ phase4: false });
+			this.setState({ phase5: true });
 		} else {
 			console.log("Changing to end phase"); //DEBUG
-			this.setState({ phase4: false });
+			this.setState({ phase5: false });
 		}
 	},
 	render: function () {
@@ -63,7 +72,8 @@ var Project = React.createClass({
 			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange }),
 			React.createElement(PersonalityPortion, { onPersonalityChange: this.onPersonalityChange, display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
 			React.createElement(CharacterPortion, { onCharacterChange: this.onCharacterChange, display: this.state.phase3, onPhaseChange: this.onPhaseChange }),
-			React.createElement(BackgroundPortion, { display: this.state.phase4, onPhaseChange: this.onPhaseChange })
+			React.createElement(TimeManagementPortion, { onTimeManagementChange: this.onTimeManagementChange, display: this.state.phase4, onPhaseChange: this.onPhaseChange }),
+			React.createElement(BackgroundPortion, { display: this.state.phase5, onPhaseChange: this.onPhaseChange })
 		);
 	}
 });
@@ -400,12 +410,67 @@ var CharacterPortion = React.createClass({
 });
 /**********Phase3 Elements end here ***************************************************************/
 /**********Phase4 Elements start here *************************************************************/
+var TimeManagementPortion = React.createClass({
+	displayName: 'TimeManagementPortion',
+
+	handleClick: function (event) {
+		var data = [];
+		this.props.onTimeManagementChange(data);
+		this.props.onPhaseChange("phase4");
+		killEvent(event);
+	},
+	renderDisplay: function () {
+		return React.createElement(
+			'form',
+			{ id: 'time-management-info', name: 'time-management-info' },
+			React.createElement(
+				'h4',
+				null,
+				'Show your daily priorities:'
+			),
+			React.createElement(
+				'label',
+				null,
+				'Physical Fitness'
+			),
+			React.createElement('input', { id: 'physical-fitness', name: 'time-management-info', onChange: this.fitChange, type: 'range', value: '0' }),
+			React.createElement(
+				'label',
+				null,
+				'Sleep/Rest'
+			),
+			React.createElement('input', { id: 'rest', name: 'time-management-info', onChange: this.restChange, type: 'range', value: '0' }),
+			React.createElement(
+				'label',
+				null,
+				'Learning New Skills'
+			),
+			React.createElement('input', { id: 'learning', name: 'time-management-info', onChange: this.learnChange, type: 'range', value: '0' }),
+			React.createElement(
+				'label',
+				null,
+				'Practicing Old Skills'
+			),
+			React.createElement('input', { id: 'practicing', name: 'time-management-info', onChange: this.practiceChange, type: 'range', value: '0' }),
+			React.createElement(
+				'button',
+				{ onClick: this.handleClick },
+				'SUBMIT'
+			)
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
+	}
+});
+/**********Phase4 Elements end here ***************************************************************/
+/**********Phase5 Elements start here *************************************************************/
 var BackgroundPortion = React.createClass({
 	displayName: 'BackgroundPortion',
 
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
-		this.props.onPhaseChange("phase4");
+		this.props.onPhaseChange("phase5");
 		killEvent(event);
 	},
 	renderDisplay: function () {
@@ -425,7 +490,7 @@ var BackgroundPortion = React.createClass({
 		return this.props.display ? this.renderDisplay() : null;
 	}
 });
-/**********Phase4 Elements end here ***************************************************************/
+/**********Phase5 Elements end here ***************************************************************/
 /**********Loadup JavaScript starts here **********************************************************/
 function run() {
 	ReactDOM.render(React.createElement(Project, null), document.getElementById("react-container"));
