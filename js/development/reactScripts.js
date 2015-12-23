@@ -227,6 +227,23 @@ var CharacterPortion = React.createClass
 /**********Phase4 Elements start here *************************************************************/
 var TimeManagementPortion = React.createClass
 ({
+	getInitialState: function()
+	{
+		return {
+			fitValue: 20,
+			restValue: 60,
+			learningValue: 30,
+			practicingValue: 0
+		};
+	},
+	handleChange: function(event)
+	{
+		if(event.currentTarget.id === "physical-fitness") this.setState({ fitValue: event.currentTarget.valueAsNumber });
+		else if(event.currentTarget.id === "rest") this.setState({ restValue: event.currentTarget.valueAsNumber });
+		else if(event.currentTarget.id === "learning") this.setState({ learningValue: event.currentTarget.valueAsNumber });
+		else if(event.currentTarget.id === "practicing") this.setState({ practicingValue: event.currentTarget.valueAsNumber });
+		console.log(event.currentTarget);
+	},
 	handleClick: function(event)
 	{
 		var data = [];
@@ -240,13 +257,13 @@ var TimeManagementPortion = React.createClass
 			<form id="time-management-info" name="time-management-info">
 				<h4>Show your daily priorities:</h4>
 				<label>Physical Fitness</label>
-				<input id="physical-fitness" name="time-management-info" onChange={this.fitChange} type="range" value="0" />
+				<input id="physical-fitness" ref="physical-fitness" name="time-management-info" onChange={this.handleChange} type="range" value={this.state.fitValue} />
 				<label>Sleep/Rest</label>
-				<input id="rest" name="time-management-info" onChange={this.restChange} type="range" value="0" />
+				<input id="rest" name="time-management-info" onChange={this.handleChange} type="range" value={this.state.restValue} />
 				<label>Learning New Skills</label>
-				<input id="learning" name="time-management-info" onChange={this.learnChange} type="range" value="0" />
+				<input id="learning" name="time-management-info" onChange={this.handleChange} type="range" value={this.state.learningValue} />
 				<label>Practicing Old Skills</label>
-				<input id="practicing" name="time-management-info" onChange={this.practiceChange} type="range" value="0" />
+				<input id="practicing" name="time-management-info" onChange={this.handleChange} type="range" value={this.state.practicingValue} /><br/>
 				<button onClick={this.handleClick}>SUBMIT</button>
 			</form> );
 	},

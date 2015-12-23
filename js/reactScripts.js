@@ -413,6 +413,18 @@ var CharacterPortion = React.createClass({
 var TimeManagementPortion = React.createClass({
 	displayName: 'TimeManagementPortion',
 
+	getInitialState: function () {
+		return {
+			fitValue: 20,
+			restValue: 60,
+			learningValue: 30,
+			practicingValue: 0
+		};
+	},
+	handleChange: function (event) {
+		if (event.currentTarget.id === "physical-fitness") this.setState({ fitValue: event.currentTarget.valueAsNumber });else if (event.currentTarget.id === "rest") this.setState({ restValue: event.currentTarget.valueAsNumber });else if (event.currentTarget.id === "learning") this.setState({ learningValue: event.currentTarget.valueAsNumber });else if (event.currentTarget.id === "practicing") this.setState({ practicingValue: event.currentTarget.valueAsNumber });
+		console.log(event.currentTarget);
+	},
 	handleClick: function (event) {
 		var data = [];
 		this.props.onTimeManagementChange(data);
@@ -433,25 +445,26 @@ var TimeManagementPortion = React.createClass({
 				null,
 				'Physical Fitness'
 			),
-			React.createElement('input', { id: 'physical-fitness', name: 'time-management-info', onChange: this.fitChange, type: 'range', value: '0' }),
+			React.createElement('input', { id: 'physical-fitness', ref: 'physical-fitness', name: 'time-management-info', onChange: this.handleChange, type: 'range', value: this.state.fitValue }),
 			React.createElement(
 				'label',
 				null,
 				'Sleep/Rest'
 			),
-			React.createElement('input', { id: 'rest', name: 'time-management-info', onChange: this.restChange, type: 'range', value: '0' }),
+			React.createElement('input', { id: 'rest', name: 'time-management-info', onChange: this.handleChange, type: 'range', value: this.state.restValue }),
 			React.createElement(
 				'label',
 				null,
 				'Learning New Skills'
 			),
-			React.createElement('input', { id: 'learning', name: 'time-management-info', onChange: this.learnChange, type: 'range', value: '0' }),
+			React.createElement('input', { id: 'learning', name: 'time-management-info', onChange: this.handleChange, type: 'range', value: this.state.learningValue }),
 			React.createElement(
 				'label',
 				null,
 				'Practicing Old Skills'
 			),
-			React.createElement('input', { id: 'practicing', name: 'time-management-info', onChange: this.practiceChange, type: 'range', value: '0' }),
+			React.createElement('input', { id: 'practicing', name: 'time-management-info', onChange: this.handleChange, type: 'range', value: this.state.practicingValue }),
+			React.createElement('br', null),
 			React.createElement(
 				'button',
 				{ onClick: this.handleClick },
