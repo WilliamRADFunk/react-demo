@@ -67,7 +67,8 @@ var Project = React.createClass
 				<Introduction display={this.state.phase1}/>
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
 				<PersonalityPortion onPersonalityChange={this.onPersonalityChange} display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
-				<BackgroundInfo display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
+				<CharacterPortion display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
+				<BackgroundPortion display={this.state.phase4} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
 });
@@ -148,12 +149,53 @@ var PersonalityPortion = React.createClass
 });
 /**********Phase2 Elements end here ***************************************************************/
 /**********Phase3 Elements start here *************************************************************/
-var BackgroundInfo = React.createClass
+var CharacterPortion = React.createClass
 ({
 	handleClick: function(event)
 	{
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase3");
+		killEvent(event);
+	},
+	renderDisplay: function()
+	{
+		return (
+			<form name="character-info-strong">
+				<div id="strongest-characteristic">
+					<label>What&#39;s your strongest character trait?</label>
+					<ul>
+						<input name="character-info-strong" type="radio" value="independence" />Independence
+						<input name="character-info-strong" type="radio" value="courage" />Courage
+						<input name="character-info-strong" type="radio" value="trustworthiness" />Trustworthiness
+						<input name="character-info-strong" type="radio" value="punctuality" />Punctuality
+						<input name="character-info-strong" type="radio" value="reliability" />Reliability
+						<input name="character-info-strong" type="radio" value="kind" />Kind-Hearted
+						<input name="character-info-strong" type="radio" value="independence" />Independence
+						<input name="character-info-strong" type="radio" value="courage" />Courage
+						<input name="character-info-strong" type="radio" value="independence" />Independence
+						<input name="character-info-strong" type="radio" value="courage" />Courage
+
+					</ul>
+				</div>
+				<div id="weakest-characteristic">
+
+				</div>
+				<button onClick={this.handleClick}>SUBMIT</button>
+			</form> );
+	},
+	render: function()
+	{
+		return (this.props.display ? this.renderDisplay() : null );
+	}
+});
+/**********Phase3 Elements end here ***************************************************************/
+/**********Phase4 Elements start here *************************************************************/
+var BackgroundPortion = React.createClass
+({
+	handleClick: function(event)
+	{
+		console.log("Submitting..."); //DEBUG
+		this.props.onPhaseChange("phase4");
 		killEvent(event);
 	},
 	renderDisplay: function()
@@ -170,12 +212,6 @@ var BackgroundInfo = React.createClass
 		return (this.props.display ? this.renderDisplay() : null );
 	}
 });
-/**********Phase3 Elements end here ***************************************************************/
-/**********Phase4 Elements start here *************************************************************/
-
-
-
-
 /**********Phase4 Elements end here ***************************************************************/
 /**********Loadup JavaScript starts here **********************************************************/
 function run()

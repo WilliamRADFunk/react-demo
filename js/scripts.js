@@ -57,7 +57,8 @@ var Project = React.createClass({
 			React.createElement(Introduction, { display: this.state.phase1 }),
 			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange }),
 			React.createElement(PersonalityPortion, { onPersonalityChange: this.onPersonalityChange, display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
-			React.createElement(BackgroundInfo, { display: this.state.phase3, onPhaseChange: this.onPhaseChange })
+			React.createElement(CharacterPortion, { display: this.state.phase3, onPhaseChange: this.onPhaseChange }),
+			React.createElement(BackgroundPortion, { display: this.state.phase4, onPhaseChange: this.onPhaseChange })
 		);
 	}
 });
@@ -214,12 +215,71 @@ var PersonalityPortion = React.createClass({
 });
 /**********Phase2 Elements end here ***************************************************************/
 /**********Phase3 Elements start here *************************************************************/
-var BackgroundInfo = React.createClass({
-	displayName: 'BackgroundInfo',
+var CharacterPortion = React.createClass({
+	displayName: 'CharacterPortion',
 
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase3");
+		killEvent(event);
+	},
+	renderDisplay: function () {
+		return React.createElement(
+			'form',
+			{ name: 'character-info-strong' },
+			React.createElement(
+				'div',
+				{ id: 'strongest-characteristic' },
+				React.createElement(
+					'label',
+					null,
+					'What\'s your strongest character trait?'
+				),
+				React.createElement(
+					'ul',
+					null,
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
+					'Independence',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
+					'Courage',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'trustworthiness' }),
+					'Trustworthiness',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'punctuality' }),
+					'Punctuality',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'reliability' }),
+					'Reliability',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'kind' }),
+					'Kind-Hearted',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
+					'Independence',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
+					'Courage',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'independence' }),
+					'Independence',
+					React.createElement('input', { name: 'character-info-strong', type: 'radio', value: 'courage' }),
+					'Courage'
+				)
+			),
+			React.createElement('div', { id: 'weakest-characteristic' }),
+			React.createElement(
+				'button',
+				{ onClick: this.handleClick },
+				'SUBMIT'
+			)
+		);
+	},
+	render: function () {
+		return this.props.display ? this.renderDisplay() : null;
+	}
+});
+/**********Phase3 Elements end here ***************************************************************/
+/**********Phase4 Elements start here *************************************************************/
+var BackgroundPortion = React.createClass({
+	displayName: 'BackgroundPortion',
+
+	handleClick: function (event) {
+		console.log("Submitting..."); //DEBUG
+		this.props.onPhaseChange("phase4");
 		killEvent(event);
 	},
 	renderDisplay: function () {
@@ -239,9 +299,6 @@ var BackgroundInfo = React.createClass({
 		return this.props.display ? this.renderDisplay() : null;
 	}
 });
-/**********Phase3 Elements end here ***************************************************************/
-/**********Phase4 Elements start here *************************************************************/
-
 /**********Phase4 Elements end here ***************************************************************/
 /**********Loadup JavaScript starts here **********************************************************/
 function run() {

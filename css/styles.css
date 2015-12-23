@@ -51,3 +51,9 @@ ul
 {
 	outline: 0;
 }
+#strongest-characteristic,
+#weakest-characteristic
+{
+	float: left;
+	width: 275px;
+}
