@@ -60,9 +60,10 @@ var Project = React.createClass
 	{
 		return (
 			<div>
-				<Introduction display={this.state.phase1} />
+				<Introduction display={this.state.phase1}/>
 				<StartButton display={this.state.phase1} onPhaseChange={this.onPhaseChange}/>
-				<BackgroundInfo display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
+				<PersonalityPortion display={this.state.phase2} onPhaseChange={this.onPhaseChange}/>
+				<BackgroundInfo display={this.state.phase3} onPhaseChange={this.onPhaseChange}/>
 			</div> );
 	}
 });
@@ -98,12 +99,41 @@ var StartButton = React.createClass
 });
 /**********Phase1 Elements end here ***************************************************************/
 /**********Phase2 Elements start here *************************************************************/
+var PersonalityPortion = React.createClass
+({
+	handleClick: function(event)
+	{
+		console.log("Submitting..."); //DEBUG
+		this.props.onPhaseChange("phase2");
+		return false;
+	},
+	render: function()
+	{
+		return (this.props.display ? (
+			<form name="personality">
+				<label>Check the following that apply to you:</label>
+				<input name="personality" type="checkbox" value="outdoors" />I don&#39t like feeling cooped up (Outdoor Work)<br/>
+				<input name="personality" type="checkbox" value="indoors" />Being outside is over-rated (Indoor Work)<br/>
+				<input name="personality" type="checkbox" value="social" />I like working in a team environment (Social)<br/>
+				<input name="personality" type="checkbox" value="antisocial" />Other people slow me down. I&#39m a lone wolf (Anti-social)<br/>
+				<input name="personality" type="checkbox" value="manual" />I like working and working out simultaneously (Manual Labor)<br/>
+				<input name="personality" type="checkbox" value="thoughtless" />Give me a simple, repetitive task anytime (No Real Thinking)<br/>
+				<input name="personality" type="checkbox" value="challenge" />Make me work for my money (Mentally Stimulating)<br/>
+				<input name="personality" type="checkbox" value="bigbucks" />Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)<br/>
+				<input name="personality" type="checkbox" value="satisfaction" />I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)<br/>
+				<input name="personality" type="checkbox" value="freedom" />Give me freedom, or give me a different job (Work Remotely)<br/>
+				<button onClick={return this.handleClick}>SUBMIT</button>
+			</form> ) : null );
+	}
+});
+/**********Phase2 Elements end here ***************************************************************/
+/**********Phase3 Elements start here *************************************************************/
 var BackgroundInfo = React.createClass
 ({
 	handleClick: function(event)
 	{
 		console.log("Submitting..."); //DEBUG
-		this.props.onPhaseChange("phase1");
+		this.props.onPhaseChange("phase3");
 		return false;
 	},
 	render: function()
@@ -116,12 +146,6 @@ var BackgroundInfo = React.createClass
 			</form> ) : null );
 	}
 });
-/**********Phase2 Elements end here ***************************************************************/
-/**********Phase3 Elements start here *************************************************************/
-
-
-
-
 /**********Phase3 Elements end here ***************************************************************/
 /**********Phase4 Elements start here *************************************************************/
 

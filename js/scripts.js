@@ -53,7 +53,8 @@ var Project = React.createClass({
 			null,
 			React.createElement(Introduction, { display: this.state.phase1 }),
 			React.createElement(StartButton, { display: this.state.phase1, onPhaseChange: this.onPhaseChange }),
-			React.createElement(BackgroundInfo, { display: this.state.phase2, onPhaseChange: this.onPhaseChange })
+			React.createElement(PersonalityPortion, { display: this.state.phase2, onPhaseChange: this.onPhaseChange }),
+			React.createElement(BackgroundInfo, { display: this.state.phase3, onPhaseChange: this.onPhaseChange })
 		);
 	}
 });
@@ -106,12 +107,69 @@ var StartButton = React.createClass({
 });
 /**********Phase1 Elements end here ***************************************************************/
 /**********Phase2 Elements start here *************************************************************/
+var PersonalityPortion = React.createClass({
+	displayName: 'PersonalityPortion',
+
+	handleClick: function (event) {
+		console.log("Submitting..."); //DEBUG
+		this.props.onPhaseChange("phase2");
+		event.stopPropagation();
+	},
+	render: function () {
+		return this.props.display ? React.createElement(
+			'form',
+			{ name: 'personality' },
+			React.createElement(
+				'label',
+				null,
+				'Check the following that apply to you:'
+			),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'outdoors' }),
+			'I don&#39t like feeling cooped up (Outdoor Work)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'indoors' }),
+			'Being outside is over-rated (Indoor Work)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'social' }),
+			'I like working in a team environment (Social)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'antisocial' }),
+			'Other people slow me down. I&#39m a lone wolf (Anti-social)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'manual' }),
+			'I like working and working out simultaneously (Manual Labor)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'thoughtless' }),
+			'Give me a simple, repetitive task anytime (No Real Thinking)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'challenge' }),
+			'Make me work for my money (Mentally Stimulating)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'bigbucks' }),
+			'Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'satisfaction' }),
+			'I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)',
+			React.createElement('br', null),
+			React.createElement('input', { name: 'personality', type: 'checkbox', value: 'freedom' }),
+			'Give me freedom, or give me a different job (Work Remotely)',
+			React.createElement('br', null),
+			React.createElement(
+				'button',
+				{ onClick: this.handleClick },
+				'SUBMIT'
+			)
+		) : null;
+	}
+});
+/**********Phase2 Elements end here ***************************************************************/
+/**********Phase3 Elements start here *************************************************************/
 var BackgroundInfo = React.createClass({
 	displayName: 'BackgroundInfo',
 
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
-		this.props.onPhaseChange("phase1");
+		this.props.onPhaseChange("phase3");
 		return false;
 	},
 	render: function () {
@@ -128,9 +186,6 @@ var BackgroundInfo = React.createClass({
 		) : null;
 	}
 });
-/**********Phase2 Elements end here ***************************************************************/
-/**********Phase3 Elements start here *************************************************************/
-
 /**********Phase3 Elements end here ***************************************************************/
 /**********Phase4 Elements start here *************************************************************/
 
