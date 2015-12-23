@@ -88,6 +88,7 @@ var StartButton = React.createClass
 	{
 		console.log("Starting..."); //DEBUG
 		this.props.onPhaseChange("phase1");
+		killEvent(event);
 	},
 	render: function()
 	{
@@ -105,7 +106,7 @@ var PersonalityPortion = React.createClass
 	{
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase2");
-		return false;
+		killEvent(event);
 	},
 	render: function()
 	{
@@ -122,7 +123,7 @@ var PersonalityPortion = React.createClass
 				<input name="personality" type="checkbox" value="bigbucks" />Show me the money! (High Priority: Money / Low Priority: Job Satisfaction)<br/>
 				<input name="personality" type="checkbox" value="satisfaction" />I need passion in my work (High Priority: Job Satisfaction / Low Priority: Money)<br/>
 				<input name="personality" type="checkbox" value="freedom" />Give me freedom, or give me a different job (Work Remotely)<br/>
-				<button onClick={return this.handleClick}>SUBMIT</button>
+				<button onClick={this.handleClick}>SUBMIT</button>
 			</form> ) : null );
 	}
 });
@@ -134,7 +135,7 @@ var BackgroundInfo = React.createClass
 	{
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase3");
-		return false;
+		killEvent(event);
 	},
 	render: function()
 	{
@@ -170,3 +171,10 @@ else
 	window.addEventListener('DOMContentLoaded', run, false);
 }
 /**********Loadup JavaScript ends here ************************************************************/
+/**********Anytime JavaScript starts here *********************************************************/
+function killEvent(e)
+{
+	e.preventDefault();
+    e.stopPropagation();
+}
+/**********Anytime JavaScript ends here ***********************************************************/

@@ -96,6 +96,7 @@ var StartButton = React.createClass({
 	handleClick: function (event) {
 		console.log("Starting..."); //DEBUG
 		this.props.onPhaseChange("phase1");
+		killEvent(event);
 	},
 	render: function () {
 		return this.props.display ? React.createElement(
@@ -113,7 +114,7 @@ var PersonalityPortion = React.createClass({
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase2");
-		event.stopPropagation();
+		killEvent(event);
 	},
 	render: function () {
 		return this.props.display ? React.createElement(
@@ -170,7 +171,7 @@ var BackgroundInfo = React.createClass({
 	handleClick: function (event) {
 		console.log("Submitting..."); //DEBUG
 		this.props.onPhaseChange("phase3");
-		return false;
+		killEvent(event);
 	},
 	render: function () {
 		return this.props.display ? React.createElement(
@@ -203,3 +204,9 @@ if (loadedStates.includes(document.readyState) && document.body) {
 	window.addEventListener('DOMContentLoaded', run, false);
 }
 /**********Loadup JavaScript ends here ************************************************************/
+/**********Anytime JavaScript starts here *********************************************************/
+function killEvent(e) {
+	e.preventDefault();
+	e.stopPropagation();
+}
+/**********Anytime JavaScript ends here ***********************************************************/
